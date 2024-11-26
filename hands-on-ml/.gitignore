@@ -1,2 +1,6 @@
+#the usual
 venv/
 __pycache__/
+
+*.csv
+*.tgz
