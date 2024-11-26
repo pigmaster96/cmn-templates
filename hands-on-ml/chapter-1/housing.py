@@ -3,6 +3,7 @@ import pandas as pd
 import tarfile
 import urllib.request
 
+#importing data
 def load_housing_data():
     tarball_path=Path("datasets/housing.tgz")
     #make directory if it doesn't exist
@@ -16,4 +17,21 @@ def load_housing_data():
 
 housing=load_housing_data()
 
-print(housing.head(5))
+#wrangling
+
+#print(housing.info()) #non-null values for each category. see total_bedrooms is incomplete 
+#print(housing["ocean_proximity"].value_counts()) #this only takes a few values
+#print(housing.describe()) #this gives rough statistics of the features. 
+
+#now some plots
+import matplotlib.pyplot as plt #dependency for pandas .hist()
+
+housing.hist(bins=50,figsize=(12,8))
+plt.show()
+
+
+
+
+
+
+
