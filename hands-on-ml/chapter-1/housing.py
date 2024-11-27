@@ -46,8 +46,7 @@ housing["income_cat"]=pd.cut(housing["median_income"],
 #plt.xlabel("Income category")
 #plt.ylabel("Number of districts")
 #plt.show()
-
-
+##split using sklearn's StratifiedshuffleSplit() to get multiple test sets---for cross validation
 
 
 
