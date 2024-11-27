@@ -30,11 +30,11 @@ import matplotlib.pyplot as plt #dependency for pandas .hist()
 
 ###splitting data###
 ## randomly permuted test set:
-#from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 ##we want a reproducible split of test/train set, so we set a seed(42)
 #train_set,test_set=train_test_split(housing,test_size=0.2,random_state=42) #Split arrays or matrices into random train and test subsets.
 
-##split based on median income "category" so the test set is representative of popn "STRATIFIED SAMPLING" we set five categories here:
+##we set up median income "categories" so the test set is representative of popn---"STRATIFIED SAMPLING". we set five categories here:
 housing["income_cat"]=pd.cut(housing["median_income"],
                                      bins=[0.,1.5,3.0,4.5,6.,np.inf],
                                      labels=[1,2,3,4,5]) #five bins. not including labels leaves an interval in the dataframe
@@ -47,7 +47,21 @@ housing["income_cat"]=pd.cut(housing["median_income"],
 #plt.ylabel("Number of districts")
 #plt.show()
 ##split using sklearn's StratifiedshuffleSplit() to get multiple test sets---for cross validation
+from sklearn.model_selection import StratifiedShuffleSplit #Stratified ShuffleSplit cross-validator 
+splitter=StratifiedShuffleSplit(n_splits=10,test_size=0.2,random_state=42)#this just generates metadata
+strat_splits=[]
+for train_index,test_index in splitter.split(housing,housing["income_cat"]):#we get 10 different training and test set INDICES
+    strat_train_set_n=housing.iloc[train_index]
+    strat_test_set_n=housing.iloc[test_index]
+    strat_splits.append([strat_train_set_n,strat_test_set_n])
+#print(np.shape(strat_splits[0][0]))#training set of first of ten shuffle and stratify splits
+##here we'll just look at one split
+strat_train_set,strat_test_set=strat_splits[0]
+#print(np.shape(strat_test_set))
 
+##train_test_split(housing, test_size=0.2, stratify=housing["income_cat"], random_state=42) can also be used for a single split
+
+print(strat_test_set["income_cat"].value_counts()/len(strat_test_set))
 
 
 
