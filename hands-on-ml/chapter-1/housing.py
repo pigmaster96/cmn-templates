@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt #dependency for pandas .hist()
 ## randomly permuted test set:
 from sklearn.model_selection import train_test_split
 ##we want a reproducible split of test/train set, so we set a seed(42)
-#train_set,test_set=train_test_split(housing,test_size=0.2,random_state=42) #Split arrays or matrices into random train and test subsets.
+#rand_train_set,rand_test_set=train_test_split(housing,test_size=0.2,random_state=42) #Split arrays or matrices into random train and test subsets.
 
 ##we set up median income "categories" so the test set is representative of popn---"STRATIFIED SAMPLING". we set five categories here:
 housing["income_cat"]=pd.cut(housing["median_income"],
@@ -61,7 +61,13 @@ strat_train_set,strat_test_set=strat_splits[0]
 
 ##train_test_split(housing, test_size=0.2, stratify=housing["income_cat"], random_state=42) can also be used for a single split
 
-print(strat_test_set["income_cat"].value_counts()/len(strat_test_set))
+##proportions of each popn demographic in test set for rand vs stratified
+#rand_train_set,rand_test_set=train_test_split(housing,test_size=0.2,random_state=42)
+#print(strat_test_set["income_cat"].value_counts()/len(strat_test_set))
+#print(rand_test_set["income_cat"].value_counts()/len(rand_test_set))
+#print(len(rand_test_set)==len(strat_test_set))
+##in this case both appear to relatively well represent the popn of interest. However this may not be the case in smaller datasets
+
 
 
 
