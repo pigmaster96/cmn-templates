@@ -69,10 +69,14 @@ strat_train_set,strat_test_set=strat_splits[0]
 ##in this case both appear to relatively well represent the popn of interest. However this may not be the case in smaller datasets
 
 
-##we don't actually need income_cat as a feature during training so we drop it
-print(strat_train_set.info())
-print(strat_train_set.head(5))
+##we don't actually need income_cat as a feature during training so we drop it using Dataframe.drop()
+#print(strat_train_set.head(5))
 for set in (strat_train_set,strat_test_set):
     set.drop("income_cat",axis=1,inplace=True)
+#print(strat_train_set.head(5))
 
-print(strat_train_set.head(5))
+###now for some data visualisation and exploration###
+
+
+
+
