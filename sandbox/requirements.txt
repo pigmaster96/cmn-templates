@@ -4,3 +4,4 @@ tqdm
 torch
 pandas
 scikit-learn
+mne
