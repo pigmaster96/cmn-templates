@@ -1,0 +1,1 @@
+15/7/25: (MLP model) 672 training samples each with 6720 inputs (power spectrum of 14 chosen electrodes), three hidden layers of same size. The model can't seem to crack 25% test set accuracy even after 110 epochs.
