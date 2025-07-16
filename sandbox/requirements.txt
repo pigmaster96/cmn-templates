@@ -5,3 +5,4 @@ torch
 pandas
 scikit-learn
 mne
+torch-directml
